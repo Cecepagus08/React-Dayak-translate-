@@ -67,8 +67,8 @@ export default function Form() {
   return (
     <>
       <div className="container">
-        <div className="flex flex-wrap align-items-center justify-content-center">
-          <Card className="mt-6 mb-10 w-96 bg-red-100 self-center lg:w-1/2 mx-auto glases bg-transparent">
+        <div className="flex p-4 flex-wrap align-items-center justify-content-center">
+          <Card className="mt-6 mb-10 w-full bg-red-100 self-center lg:w-1/2 mx-auto glases bg-transparent">
             <CardBody>
               <div className="grid grid-cols-[auto,40px,auto] gap-2 items-end">
                 <div>
@@ -127,7 +127,7 @@ export default function Form() {
           </Card>
 
           {/* Card Hasil Terjemahan */}
-          <Card className="w-96 m-4 mx-auto shadow-lg self-end lg:w-1/2">
+          <Card className="w-full m-4 mx-auto shadow-lg self-end lg:w-1/2">
             <CardHeader className="bg-blue-500 text-white p-4">
               <Typography variant="h6">Hasil Terjemahan</Typography>
             </CardHeader>
