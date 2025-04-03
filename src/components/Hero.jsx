@@ -4,29 +4,29 @@ import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
-
-
 export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  return(
-        <div className="text-center flex flex-col justify-content-center mb-8">
-            <h1 className="text-balance text-12xl font-bold gradient-text  font-semibold tracking-tight text-gray-900 sm:text-7xl">
-              Dayak Ngaju Translater
-            </h1>
-            
-            <div className="flex items-center pt-4 ">
-              <div className="flex-grow border-t border-gray-400"></div>
-                <h2 className="mx-3">Dayak nagju dari kalimantan tengah</h2>
-                <div className="flex-grow border-t border-gray-400"></div>
-              </div>
+  return (
+    <div id="Home" className="text-center flex flex-col justify-center pt-5 mb-8">
+      {/* Judul dengan teks gradasi */}
+      <h1 className="mb-2 text-balance text-6xl font-bold bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-transparent sm:text-7xl">
+        Penerjemah Dayak Ngaju
+      </h1>
 
+      {/* Garis & Subjudul */}
+    <div className="flex items-center pt-4">
+      <div className="flex-grow border-t border-gray-600"></div>
+        <h2 className="mx-3 text-gray-300 text-lg">
+          Menerjemahkan Bahasa Dayak Ngaju ke Indonesia & sebaliknya
+        </h2>
+      <div className="flex-grow border-t border-gray-600"></div>
+    </div>
 
-            <p className="mt-8 mx-9 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-              fugiat veniam occaecat.
-            </p>
-
-          </div>
-          );
+      {/* Deskripsi */}
+      <p className="mt-8 mx-9 text-pretty text-lg font-medium text-gray-200 sm:text-xl">
+        Jelajahi kekayaan bahasa dan budaya Dayak Ngaju. Gunakan alat penerjemah ini untuk memahami dan belajar bahasa lokal Kalimantan Tengah dengan mudah.
+      </p>
+    </div>
+  );
 }

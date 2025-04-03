@@ -6,21 +6,28 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import logoDT from "../assets/logoDT.png"; 
 
 function NavList() {
+  const handleScroll = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      {["Pages", "Account", "Blocks", "Docs"].map((item) => (
+      {["Home", "About", "Portofolio"].map((item) => (
         <Typography
           key={item}
           as="li"
           variant="small"
-          color="blue-gray"
-          className="p-1 font-medium"
+          color="white"
+          className="p-1 font-medium text-white cursor-pointer"
+          onClick={() => handleScroll(item.toLowerCase())} // Scroll ke id yang sesuai
         >
-          <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
-            {item}
-          </a>
+          {item}
         </Typography>
       ))}
     </ul>
@@ -37,17 +44,16 @@ export default function AppNavbar() {
   }, []);
 
   return (
-    <Navbar className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-6xl mt-10 max-w-screen-xl overflow-scroll bg-gray-700 m-auto px-6 py-3">
-      <div className="flex items-center justify-between text-blue-gray-900">
-        <Typography as="a" href="#" variant="h6" className="mr-4 cursor-pointer py-1.5">
-          Material Tailwind
-        </Typography>
+    <Navbar className="fixed bg-transparent top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-6xl mt-10 max-w-screen-xl overflow-scroll bg-gray-800 m-auto px-6 py-3">
+      <div className="flex items-center justify-between text-white">
+        <img className="h-10 w-10 mr-4 object-contain" src={logoDT} alt="Logo DT" width={200} />
+
         <div className="hidden lg:block">
           <NavList />
         </div>
         <IconButton
           variant="text"
-          className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+          className="ml-auto h-6 w-6 text-white hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
           ripple={false}
           onClick={() => setOpenNav(!openNav)}
         >
