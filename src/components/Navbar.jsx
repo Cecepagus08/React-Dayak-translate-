@@ -5,59 +5,80 @@ import {
   Typography,
   IconButton,
 } from "@material-tailwind/react";
+import logoDT from "../assets/logoDT.png";  
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import logoDT from "../assets/logoDT.png"; 
-
+ 
 function NavList() {
-  const handleScroll = (id) => {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      {["Home", "About", "Portofolio"].map((item) => (
-        <Typography
-          key={item}
-          as="li"
-          variant="small"
-          color="white"
-          className="p-1 font-medium text-white cursor-pointer"
-          onClick={() => handleScroll(item.toLowerCase())} // Scroll ke id yang sesuai
-        >
-          {item}
-        </Typography>
-      ))}
+      <Typography
+        as="li"
+        variant="small"
+        
+        className="p-1 font-medium"
+      >
+        <a href="#home" className="flex text-slate-50 items-center hover:text-blue-500 transition-colors">
+          Home
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        
+        className="p-1 font-medium"
+      >
+        <a href="#about" className="flex text-slate-50 items-center hover:text-blue-500 transition-colors">
+          About
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        
+        className="p-1  font-medium"
+      >
+        <a href="#" className="flex text-slate-50 items-center hover:text-blue-500 transition-colors">
+          Portofio
+        </a>
+      </Typography>
+  
     </ul>
   );
 }
-
+ 
 export default function AppNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
-
+ 
+  const handleWindowResize = () =>
+    window.innerWidth >= 960 && setOpenNav(false);
+ 
   React.useEffect(() => {
-    const handleResize = () => window.innerWidth >= 960 && setOpenNav(false);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener("resize", handleWindowResize);
+ 
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
   }, []);
-
+ 
   return (
-    <Navbar className="fixed bg-transparent top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-6xl mt-10 max-w-screen-xl overflow-scroll bg-gray-800 m-auto px-6 py-3">
+    <Navbar className="sticky bg-transparent top-4 z-50 w-[90%] max-w-6xl mt-1 max-w-screen-xl overflow-scroll bg-gray-800 m-auto mb-10 px-6 py-3">
       <div className="flex items-center justify-between text-white">
-        <img className="h-10 w-10 mr-4 object-contain" src={logoDT} alt="Logo DT" width={200} />
+        <img className="h-9 w-9 mr-4 object-contain" src={logoDT} alt="Logo DT" width={200} />
 
         <div className="hidden lg:block">
           <NavList />
         </div>
         <IconButton
           variant="text"
-          className="ml-auto h-6 w-6 text-white hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+          className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
           ripple={false}
           onClick={() => setOpenNav(!openNav)}
         >
-          {openNav ? <XMarkIcon className="h-6 w-6" strokeWidth={2} /> : <Bars3Icon className="h-6 w-6" strokeWidth={2} />}
+          {openNav ? (
+            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+          ) : (
+            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+          )}
         </IconButton>
       </div>
       <Collapse open={openNav}>

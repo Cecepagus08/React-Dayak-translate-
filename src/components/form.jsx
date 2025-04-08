@@ -25,6 +25,14 @@ export default function Form() {
       ])
     ),
   };
+  
+  const speakText = () => {
+  const synth = window.speechSynthesis;
+  const utterance = new SpeechSynthesisUtterance(translatedText);
+  utterance.lang = 'id-ID';
+  synth.speak(utterance);
+};
+
 
   // Buat kamus terbalik (Indonesia → Dayak)
   const kamusTerbalik = Object.fromEntries(
@@ -53,6 +61,7 @@ export default function Form() {
       })
       .join(" ");
   };
+  
 
   const handleTranslate = () => {
     setTranslatedText(translate(inputText, isReversed));
@@ -66,100 +75,113 @@ export default function Form() {
 
   return (
     <>
-      <div className="container">
-        <div className="flex p-4 flex-wrap align-items-center justify-content-center">
-          <Card className="mt-6 mb-10 w-full bg-red-100 self-center lg:w-1/2 mx-auto glases bg-transparent">
-            <CardBody>
-              <div className="grid grid-cols-[auto,40px,auto] gap-2 items-end">
-                <div>
-                  <label className="block text-sm font-semibold text-stone-50">
-                    Dari Bahasa
-                  </label>
-                  <input
-                    type="text"
-                    value={isReversed ? "Indonesia" : "Dayak Ngaju"}
-                    readOnly
-                    className="input-effect block w-full rounded-md bg-white px-3.5 py-2 text-base text-stone-50 border border-gray-300"
-                  />
-                </div>
-                <button
-                  className="repeat flex items-center justify-center w-10 h-10 bg-blue-500 text-white rounded-lg"
-                  onClick={() => setIsReversed(!isReversed)}
-                >
-                  <FontAwesomeIcon icon={faRepeat} />
-                </button>
-                <div>
-                  <label className="block text-sm font-semibold text-stone-50">
-                    Ke Bahasa
-                  </label>
-                  <input
-                    type="text"
-                    value={isReversed ? "Dayak Ngaju" : "Indonesia"}
-                    readOnly
-                    className="input-effect block w-full rounded-md bg-white px-3.5 py-2 text-base text-stone-50 border border-gray-300"
-                  />
-                </div>
-              </div>
-
-              <div className="mt-4">
-                <label className="block text-sm font-semibold text-stone-50">Masukkan Teks</label>
-                <textarea
-                  placeholder={
-                    isReversed
-                      ? "Masukkan teks dalam bahasa Indonesia"
-                      : "Masukkan teks dalam bahasa Dayak Ngaju"
-                  }
-                  className="input-effect block w-full rounded-md bg-white px-3.5 py-2 text-base text-stone-50 border border-gray-300"
-                  value={inputText}
-                  onChange={(e) => setInputText(e.target.value)}
-                />
-              </div>
-            </CardBody>
-
-            <CardFooter>
-              <button
-                onClick={handleTranslate}
-                className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow hover:bg-indigo-500"
-              >
-                Terjemahkan
-              </button>
-            </CardFooter>
-          </Card>
-
-          {/* Card Hasil Terjemahan */}
-          <Card className="w-full m-4 mx-auto shadow-lg self-end lg:w-1/2">
-            <CardHeader className="bg-blue-500 text-white p-4">
-              <Typography variant="h6">Hasil Terjemahan</Typography>
-            </CardHeader>
-            <CardBody>
-              <div className="relative">
-                <textarea
-                  ref={textAreaRef}
-                  readOnly
-                  className="bg-transparent input-effect outline-0 block w-full rounded-md bg-gray-200 px-3.5 py-2 text-base text-black resize-none overflow-hidden"
-                  value={translatedText}
-                />
-              </div>
-              <div className="flex gap-2 absolute right-2 justify-center align-items-center bottom-2" >
-              
-              <button
-                className=" flex items-center justify-center w-10 h-10 bg-red-500 text-white rounded-lg"
-                onClick={() => console.log("Play audio")}
-              >
-                <FontAwesomeIcon icon={faCopy} />
-              </button>
-              <button
-                className=" flex items-center justify-center w-10 h-10 bg-red-500 text-white rounded-lg"
-                onClick={() => console.log("Play audio")}
-              >
-                <FontAwesomeIcon icon={faVolumeHigh} />
-              </button>
-              </div>
-              
-            </CardBody>
-          </Card>
+    <div  className="container mx-auto">
+  <div className="flex p-4 flex-col lg:flex-row items-start justify-center gap-4">
+    {/* Card Input (Kiri) */}
+    <Card className="mt-6 mb-10 w-full bg-red-100 lg:w-1/2 mx-auto glases bg-transparent">
+      <CardBody>
+        <div className="grid grid-cols-[auto,40px,auto] gap-2 items-end">
+          <div>
+            <label className="block text-sm font-semibold text-stone-50">
+              Dari Bahasa
+            </label>
+            <input
+              type="text"
+              value={isReversed ? "Indonesia" : "Dayak Ngaju"}
+              readOnly
+              className="input-effect block w-full rounded-md bg-white px-3.5 py-2 text-base text-stone-50 border border-gray-300"
+            />
+          </div>
+          <button
+            className="repeat flex items-center justify-center w-10 h-10 bg-blue-500 text-white rounded-lg"
+            onClick={() => setIsReversed(!isReversed)}
+          >
+            <FontAwesomeIcon icon={faRepeat} />
+          </button>
+          <div>
+            <label className="block text-sm font-semibold text-stone-50">
+              Ke Bahasa
+            </label>
+            <input
+              type="text"
+              value={isReversed ? "Dayak Ngaju" : "Indonesia"}
+              readOnly
+              className="input-effect block w-full rounded-md bg-white px-3.5 py-2 text-base text-stone-50 border border-gray-300"
+            />
+          </div>
         </div>
-      </div>
+
+        <div id="portofolio" className="mt-4">
+          <label className="block text-sm font-semibold text-stone-50">Masukkan Teks</label>
+          <textarea
+            placeholder={
+              isReversed
+                ? "Masukkan teks dalam bahasa Indonesia"
+                : "Masukkan teks dalam bahasa Dayak Ngaju"
+            }
+            className="input-effect block w-full rounded-md bg-white px-3.5 py-2 text-base text-stone-50 border border-gray-300"
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+          />
+        </div>
+      </CardBody>
+
+      <CardFooter>
+        <button
+          onClick={handleTranslate}
+          className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow hover:bg-indigo-500"
+        >
+          Terjemahkan
+        </button>
+      </CardFooter>
+    </Card>
+
+    {/* Card Hasil Terjemahan (Kanan, Sejajar Atas) */}
+    <Card className="w-full m-4 mx-auto lg:mt-10 shadow-lg self-start lg:w-1/2">
+      <CardHeader className="bg-blue-500 text-white p-4">
+        <Typography variant="h6">Hasil Terjemahan</Typography>
+      </CardHeader>
+      <CardBody>
+        <div className="relative mb-5">
+          <textarea
+            ref={textAreaRef}
+            readOnly
+            className="bg-transparent input-effect outline-0 block w-full rounded-md bg-gray-200 px-3.5 py-2 text-base text-black resize-none overflow-hidden"
+            value={translatedText}
+          />
+        </div>
+              </CardBody>
+        <div className="flex gap-2 mt-4 absolute right-2 justify-center items-center bottom-1">
+          <button
+            className={`flex items-center justify-center w-10 h-10 text-white rounded-lg transition-colors duration-300 ${
+      translatedText ? "bg-red-500 hover:bg-red-600" : "bg-gray-400 cursor-not-allowed"
+    }`}
+            disabled={!translatedText}
+            onClick={() => {
+                  if (translatedText) {
+                    navigator.clipboard.writeText(translatedText);
+//                     alert("Teks berhasil disalin!");
+                  }
+                }}
+          >
+            <FontAwesomeIcon icon={faCopy} />
+          </button>
+          <button
+          disabled={!translatedText}
+            className={`flex items-center justify-center w-10 h-10 text-white rounded-lg transition-colors duration-300 ${
+      translatedText ? "bg-red-500 hover:bg-red-600" : "bg-gray-400 cursor-not-allowed"
+    }`}
+            onClick={speakText}
+          >
+            <FontAwesomeIcon icon={faVolumeHigh} />
+          </button>
+        </div>
+
+    </Card>
+  </div>
+</div>
+
+   
     </>
   );
 }

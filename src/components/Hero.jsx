@@ -8,7 +8,7 @@ export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div id="Home" className="text-center flex flex-col justify-center pt-5 mb-8">
+    <div id="" className="text-center top-0  flex flex-col justify-center ">
       {/* Judul dengan teks gradasi */}
       <h1 className="mb-2 text-balance text-6xl font-bold bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-transparent sm:text-7xl">
         Penerjemah Dayak Ngaju
@@ -28,5 +28,6 @@ export default function Hero() {
         Jelajahi kekayaan bahasa dan budaya Dayak Ngaju. Gunakan alat penerjemah ini untuk memahami dan belajar bahasa lokal Kalimantan Tengah dengan mudah.
       </p>
     </div>
+      
   );
 }

@@ -6,7 +6,8 @@ import Form from "./components/form"
 // import Input from "./components/Input"
 export default function App() {
   return (
-    <div>
+    
+    <div id="home" >
       <AppNavbar />
 
         <Hero />

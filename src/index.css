@@ -24,10 +24,11 @@ a:hover {
   color: #535bf2;
 }
 
+
 body {
   margin: 0;
-  
-  padding-top:100px;
+  scroll-behavior: smooth;
+  padding-top:10px;
   background-image: linear-gradient(to left top, #020000, #180b0a, #491615, #6b1c17, #8c2315);
   place-items: center;
   min-width: 320px;
@@ -40,16 +41,15 @@ h1 {
   line-height: 1.1;
 }
 .glases{
-  
   background:rgba(239,237,237,0.209);
-box-shadow:
-0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter:
-blur( 10px );
--webkit-backdrop-filter:
-blur( 10px );
-border-radius:
-10px;
+  box-shadow:
+  0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter:
+  blur( 10px );
+  -webkit-backdrop-filter:
+  blur( 10px );
+  border-radius:
+  10px;
 }
 
 .glases .input-effect{
